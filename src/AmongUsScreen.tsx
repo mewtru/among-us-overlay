@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Character } from "./Character";
 
 interface Props {
@@ -31,7 +32,9 @@ function useDelayedMessage(
 }
 
 export function AmongUsScreen(props: Props) {
-  const message = useDelayedMessage(props.text, 80, 2000);
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  const message = useDelayedMessage(searchParams.get("text")!, 80, 2000);
   return (
     <>
       <Character color="blue" />
